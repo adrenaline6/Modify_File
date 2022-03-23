@@ -8,25 +8,37 @@ def Modify():
 
 	# Adding a subtag named `Opening`
 	# inside our root tag
-	element1 = ET.SubElement(data, 'child', name='Frank', test=0)
+	element1 = ET.SubElement(data, 'child')
+	element1.set('name', 'Frank')
+	element1.set('test', '0')
+	element1.text = 'FRANK likes EVERYONE'
 	element2 = ET.SubElement(data, 'unique')
-	element3 = ET.SubElement(data, 'child', name='Texas', test=1)
-	element4 = ET.SubElement(data, 'child', name='Frank', test=2)
+	element2.text = 'Add a video URL here'
+	element3 = ET.SubElement(data, 'child')
+	element3.set('name', 'Texas')
+	element3.set('test', '1')
+	element3.text = 'TEXAS is a PLACE'
+	element4 = ET.SubElement(data, 'child')
+	element4.set('name', 'Frank')
+	element4.set('test', '2')
+	element4.text = 'Exclusively'
 	element5 = ET.SubElement(data, 'unique')
-	element6 = ET.SubElement(data, 'data')
+	element5.text = 'Add a workbook URL here'
 
-	s_elem1 = ET.SubElement(element1, 'E4')
-	s_elem2 = ET.SubElement(element1, 'D4')
+	element6 = ET.SubElement(data, 'data')
+	element6.text = 'Add the content of your article here'
+	ele_data_1 = ET.SubElement(element6, 'family')
+	ele_data_1.text = 'Add the font family of your text here'
+	ele_data_2 = ET.SubElement(element6, 'size')
+	ele_data_2.text = 'Add the font size of your text here'	
 
 	# Adding attributes to the tags under
 	# `items`
-	s_elem1.set('type', 'Accepted')
-	s_elem2.set('type', 'Declined')
+
 
 	# Adding text between the `E4` and `D5`
 	# subtag
-	s_elem1.text = "King's Gambit Accepted"
-	s_elem2.text = "Queen's Gambit Declined"
+
 
 	# Converting the xml data to byte object,
 	# for allowing flushing data to file
@@ -35,11 +47,11 @@ def Modify():
 
 	# Opening a file under the name `items2.xml`,
 	# with operation mode `wb` (write + binary)
-	with open("GFG.xml", "wb") as f:
+	with open("test.xml", "wb") as f:
 		f.write(b_xml)
 	f.close()
 def Readfile():
-	with open('GFG.xml', 'r') as f:
+	with open('test.xml', 'r') as f:
 		data = f.read()
 		Bs_data = BeautifulSoup(data, 'xml')
 		b_unique = Bs_data.find_all('D4')
